@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+	<div id="wrapper">
+		<div id="pagelet-nav">
+			<div class="nav-inner">
+				<div class="nav-logo">
+					<a href="/home" class="logo-box" title="你关心的步行街头条">
+						<img src="/images/logo.png" class="logo" alt="">
+					</a>
+				</div>
+				<div class="nav-title"></div>
+				<div class="nav-subtitle">欢迎回来, LA.Kobe.Bryant!</div>
+			</div>
+		</div>
+		<div id="container">
+			<div id="pagelet-feedlist">
+				<ul>
+					<% for(var i=0; i<item.length; i++) { %>
+					        <li class="item clearfix">
+								<div class="info">
+									<p class="title">
+										<a href='<%=item[i].href %>'><%=item[i].title %></a>
+									</p>
+								</div>
+								<p class="footer">
+									<span class="other">
+										<span class="reply">回复：<span class="red"><%=item[i].reply %></span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+										<span class="read">阅读: <span class="grey"><%=item[i].read %></span></span>
+									</span>
+									<span class="footer-right">
+										<span>by:<a href='<%=item[i].authorLink%>' title="<%=item[i].author %>"><%=item[i].author %></a></span>
+										<span><%=item[i].time %></span>
+									</span>
+								</p>
+					        </li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</div>
+    	
+    </ul>
+  </body>
+</html>
