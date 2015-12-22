@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>你关心的步行街头条</title>
     <meta charset="utf-8">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="./javascripts/jquery-1.9.1.min.js"></script>
+    <script src="./javascripts/knockout-3.0_0.js"></script>
+    <script src="./javascripts/index.js"></script>
   </head>
   <body>
 	<div id="wrapper">
@@ -20,26 +23,24 @@
 		</div>
 		<div id="container">
 			<div id="pagelet-feedlist">
-				<ul>
-					<% for(var i=0; i<item.length; i++) { %>
-					        <li class="item clearfix">
-								<div class="info">
-									<p class="title">
-										<a href='<%=item[i].href %>'><%=item[i].title %></a>
-									</p>
-								</div>
-								<p class="footer">
-									<span class="other">
-										<span class="reply">回复：<span class="red"><%=item[i].reply %></span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-										<span class="read">阅读: <span class="grey"><%=item[i].read %></span></span>
-									</span>
-									<span class="footer-right">
-										<span>by:<a href='<%=item[i].authorLink%>' title="<%=item[i].author %>"><%=item[i].author %></a></span>
-										<span><%=item[i].time %></span>
-									</span>
-								</p>
-					        </li>
-					<% } %>
+				<ul data-bind="foreach:TopicNewsList">
+			        <li class="item clearfix">
+						<div class="info">
+							<p class="title">
+								<a data-bind="attr:{href:link,title:title,'last-reply':lastReply},text:title"></a>
+							</p>
+						</div>
+						<p class="footer">
+							<span class="other">
+								<span class="reply">回复：<span class="red" data-bind="text:reply"></span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span class="read">阅读: <span class="grey" data-bind="text:read"></span></span>
+							</span>
+							<span class="footer-right">
+								<span>by:<a data-bind="attr:{href:authorLink,title:author},text:author"></a></span>
+								<span data-bind="text:createTime"></span>
+							</span>
+						</p>
+			        </li>
 				</ul>
 			</div>
 		</div>

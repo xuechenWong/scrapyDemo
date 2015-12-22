@@ -7,7 +7,7 @@ var BufferHelper = require('bufferhelper');
 
 var scrapt = {};
 var baseUrl = 'http://bbs.hupu.com';
-var url = 'http://bbs.hupu.com/bxj';
+var url = 'http://bbs.hupu.com/bxj-2';
 var pageArea = '';
 scrapt.get = function(url,cb){
   http.get(url, function(res) {
@@ -29,68 +29,27 @@ scrapt.get = function(url,cb){
   });
 }
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: '你关心的步行街头条'});
-});
-router.get('/page/init', function(req, res, next) {
+router.get('/page', function(req, res, next) {
 	var items= [];
 	scrapt.get(url,function(err,data){
 	  var html = data.toString();
 	  $ = cheerio.load(html);
+	  console.log('invoke pages http server!');
 	  $('#pl tbody').last().find('tr').each(function(){
 	  	var item = {};
 		item.title = $(this).find('.p_title >a').text();
-		item.link = baseUrl + $(this).find('.p_title >a').attr('href');
+		item.href = baseUrl + $(this).find('.p_title >a').attr('href');
 		item.author = $(this).find('.p_author >a').text();
 		item.authorLink = $(this).find('.p_author >a').attr('href');
 		$(this).find('.p_author >a').remove();
-		item.createTime = $(this).find('.p_author').text();
-		item.lastReply = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay() + " " + $(this).find('.p_retime >a').text();
-
+		item.time = $(this).find('.p_author').text();
 		var bigText = $(this).find('.p_re').text();
 		item.reply = bigText.split('/')[0];
 		item.read = bigText.split('/')[1];
 	  	items.push(item);
 	  })
-	  var data = {
-	  	data:items,
-	  	message:"success",
-	  	status:200
-	  };
-	  console.log('invoke get init page function');
-	  res.json(data);
+	  // res.render('index', { title: '你关心的步行街头条',item:items });
 	})
-});
-
-router.get('/ajax/page',function(req,res){
-  var ajaxTest={
-    tips:"you are not alone"
-  };
-  var items = [];
-  var item1 = {
-  	user: "Todd",
-  	id:1
-  };
-  var item2 = {
-  	user: "Hanson",
-  	id:2
-  };
-  var item3 = {
-  	user: "Alex",
-  	id:3
-  };
-
-  items.push(item1);
-  items.push(item2);
-  items.push(item3);
-  var data = {
-  	data:items,
-  	message:"success",
-  	status:200
-  }
-  console.log('invoke get next page function');
-  res.json(data);
-  // res.json({"message":"invoke API success","status":"0","data":[{"id":"1","author":"Hanson"},{"id":"2","user":"Todd"},{"id":"3","user":"Alex"}]});
 });
 
 module.exports = router;
