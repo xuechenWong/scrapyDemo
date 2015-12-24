@@ -103,7 +103,7 @@ ol,ul{
     vertical-align: bottom;
     display: inline-block;
     width: 100%;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 10px;
     left: 0;
     font-size:14px;
