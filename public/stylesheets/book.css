@@ -1,0 +1,96 @@
+@keyframes myframe{
+	0%	{background:red;};
+	25%	{background:blue;}
+	75%	{background:yellow;}
+	100%	{background:green;}
+
+}
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {background:red;}
+25%  {background:yellow;}
+50%  {background:blue;}
+100% {background:green;}
+}
+.myframe{
+	width:100px;
+	height:100px;
+	background:#845434;
+	animation:myframe 5s infinite;
+	-webkit-animation:myfirst 5s infinite;
+}
+.logo{
+	font-size:64px;
+	color:blue;
+	text-decoration:none;
+}
+.logo .logo-hanson{
+	animation-name:logo;
+	-webkit-animation-name:logo;
+	animation-duration:.6s;
+	-webkit-animation-duration:.6s;
+	animation-fill-mode:forwards;
+	-weblit-fill-mode:forwards;
+	-webkit-animation-timing-function: cubic-bezier(.75, -2, .75, 2);
+	        animation-timing-function: cubic-bezier(.75, -2, .75, 2);
+	-webkit-transform-origin: 86% 15%;
+	    -ms-transform-origin: 86% 15%;
+	        transform-origin: 86% 15%;
+}
+
+.logo-hanson:hover{
+	-webkit-animation-name: unlogo;
+	        animation-name: unlogo;
+	-webkit-animation-duration: 3.2s;
+	        animation-duration: 1.2s;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+	-webkit-animation-iteration-count: 3;
+	        animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
+	-webkit-transform-origin: 86% 15%;
+	    -ms-transform-origin: 86% 15%;
+	        transform-origin: 86% 15%;
+}
+
+@keyframes logo{
+	from {
+		transform:rotate(-12deg);
+	}
+	to {
+		transform:rotate(0deg);
+	}
+}
+@-webkit-keyframes logo{
+	from {
+		transform:rotate(-12deg);
+	}
+	to {
+		transform:rotate(0deg);
+	}
+}
+
+@keyframes unlogo{
+	40% {
+		tranform:rotate(-16deg);
+	}
+	60% {
+		transform:rotate(-8deg);
+	}
+	to {
+		transform:rotate(-12deg);
+	}
+}
+
+@-webkit-keyframes unlogo{
+	40% {
+		tranform:rotate(-16deg);
+	}
+	60% {
+		transform:rotate(-8deg);
+	}
+	to {
+		transform:rotate(-12deg);
+	}
+}
